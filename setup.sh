@@ -55,7 +55,7 @@ function autostart() {
 	echo "Checking for autostart files..."
 	if [ $(ls ~/.config/autostart/ | grep $1 | wc -l) -eq 0 ]; then
 		echo "No autostart files found, creating them now ..."
-		curl -Ls https://raw.githubusercontent.com/carebare47/useful_things/master/set_startup-script.py | python - $1 $1
+		curl -Ls https://raw.githubusercontent.com/tomqdev/useful_things/master/set_startup-script.py | python - $1 $1
 	else
 		echo "Autostart files found."
 	fi
@@ -104,7 +104,7 @@ echo "  * -a or --all                 Set to true to do everything (use on new m
 echo "  * -c or --container           Set to true when installing in a container (e.g. doesn't install chrome)"
 echo "  * -b or --bash_only           Set to true to only install bash functions"
 echo ""
-echo "example:  bash <(curl -Ls https://raw.githubusercontent.com/carebare47/useful_things/master/setup.sh) --all true -c true"
+echo "example:  bash <(curl -Ls https://raw.githubusercontent.com/tomqdev/useful_things/master/setup.sh) --all true -c true"
 echo "You might need this: curl -H 'Cache-Control: no-cache'"
 echo ""
 echo "All?	        = ${ALL}"
@@ -244,7 +244,7 @@ if [[ "${BASH_FUNCTIONS}" == true  ]]; then
 #	if [[ "$(TOM)" == true ]]; then
 #		echo "Configuring git..."
 #		git config --global user.email "tom@shadowrobot.com"
-#		git config --global user.name "carebare47"
+#		git config --global user.name "tomqdev"
 #	fi
         echo "Adding .launch to get xml language file..."
         sudo sed -i 's/\*\.xml;/\*\.xml;\*\.launch;/g' /usr/share/gtksourceview-3.0/language-specs/xml.lang
@@ -259,14 +259,14 @@ if [[ "${BASH_FUNCTIONS}" == true  ]]; then
         if [[ $(ls ~/ -a | grep -x ".bash_functions_tom" | wc -l) -gt 0 ]]; then
           rm ~/.bash_functions_tom
         fi
-        wget -O ~/.bash_functions_tom https://raw.githubusercontent.com/carebare47/useful_things/master/bash_functions
+        wget -O ~/.bash_functions_tom https://raw.githubusercontent.com/tomqdev/useful_things/master/bash_functions
         if [[ $(cat ~/.bashrc  | grep "source ~/.bash_functions_tom" | wc -l) -eq 0 ]]; then
           echo "source ~/.bash_functions_tom" >> ~/.bashrc
         fi
 
 	if [ $(cat ~/.bash_functions_tom | grep "docker_create" | wc -l) -eq 0 ]; then
 		echo "docker_create function not found, adding"
-		# wget -O /tmp/docker_create_function https://raw.githubusercontent.com/carebare47/useful_things/master/docker_create_function
+		# wget -O /tmp/docker_create_function https://raw.githubusercontent.com/tomqdev/useful_things/master/docker_create_function
 		# cat /tmp/docker_create_function >> ~/.bash_functions_tom
 		# rm /tmp/docker_create_function
 	else
